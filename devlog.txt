@@ -1,1 +1,6 @@
+RickyL -- 2026-1-9 10:30 AM
+- Added required files to the repo
+
+RickyL -- 2026-1-12 12:00 AM
+- Added readme heading and description of the project and launch/install codes
 
