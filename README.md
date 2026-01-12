@@ -11,7 +11,7 @@ Handles flask implementation and javascript
 Duo's An Ordinary To Do List website is one where you can create/login into an account and see your upcoming events and tasks, sorted by urgency and time. You can create new tasks and change your settings of your account. 
 
 # Install Guide:
-1) Open terminal and git clone this repo through ssh ('git@github.com:jalenchen0/DUO.git') onto local computer in an accessible location
+1) Open terminal and git clone this repo through ssh (`git@github.com:jalenchen0/DUO.git`) onto local computer in an accessible location
 2) Navigate into cloned Repo installed using `cd repo_name`. Then navigate into `app` directory via `cd app`
 3) Create a python virtual enviornment using: `python3 -m venv venv`
 4) Activate virtual enviornment by doing: `cd venv`. Then `. bin/activate`
