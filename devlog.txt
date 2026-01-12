@@ -3,4 +3,5 @@ RickyL -- 2026-1-9 10:30 AM
 
 RickyL -- 2026-1-12 12:00 AM
 - Added readme heading and description of the project and launch/install codes
+- Helped add to design doc
 
