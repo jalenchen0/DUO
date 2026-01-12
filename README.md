@@ -1,10 +1,10 @@
 # An ordinary To Do List by DUO
 # Roster:
-Jalen Chen - Project Manager
-Handles frontend html and page design with css and database
+Jalen Chen - Project Manager\n
+Handles page design with css and database
 
-Ricky Lin - Dev
-Handles flask implementation and javascript
+Ricky Lin - Dev\n
+Handles flask implementation, frontend html, and javascript
 
 # Description:
 
