@@ -5,3 +5,5 @@ RickyL -- 2026-1-12 12:00 AM
 - Added readme heading and description of the project and launch/install codes
 - Helped add to design doc
 
+INITIAL DD REVIEW -- 2026-1-12 10:15 Am
+- Added a summary of th project and added javascript to frontend components
