@@ -7,3 +7,9 @@ RickyL -- 2026-1-12 12:00 AM
 
 INITIAL DD REVIEW -- 2026-1-12 10:15 Am
 - Added a summary of th project and added javascript to frontend components
+
+RickyL -- 2026-1-13 7:00 AM
+- Uploaded design doc to github
+- Added to design doc
+- Made a working flask app
+- Added all html templates for flask app 
