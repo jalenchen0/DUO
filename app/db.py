@@ -1,0 +1,39 @@
+import sqlite3
+import os
+from datetime import datetime
+import json
+
+DB_NAME = "Data/database.db"
+try:
+    os.mkdir("Data/")
+except:
+    pass
+DB = sqlite3.connect(DB_NAME)
+DB_CURSOR = DB.cursor()
+DB_CURSOR.execute("CREATE TABLE IF NOT EXISTS Users(username TEXT PRIMARY KEY, password TEXT);")
+
+def add_user(username, password):
+    DB_NAME = "Data/database.db"
+    DB = sqlite3.connect(DB_NAME)
+    DB_CURSOR = DB.cursor()
+    DB_CURSOR.execute("SELECT COUNT(*) FROM Users WHERE username = (?)", (username,))
+    cursorfetch = DB_CURSOR.fetchone()[0]
+    if cursorfetch == 1:
+        DB.commit()
+        DB.close()
+        return False
+    DB_CURSOR.execute("INSERT INTO Users VALUES(?, ?)", (username, password))
+    DB.commit()
+    DB.close()
+    return True
+
+def get_user(username):
+    DB_NAME = "Data/database.db"
+    DB = sqlite3.connect(DB_NAME)
+    DB_CURSOR = DB.cursor()
+    DB_CURSOR.execute("SELECT * FROM Users WHERE username = ?", (username,))
+    cursorfetch = DB_CURSOR.fetchone()
+    return cursorfetch
+
+def check_password(username, password):
+    return password == get_user(username)[1]
