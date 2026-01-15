@@ -1,3 +1,7 @@
+
+  #Duo's To Do List
+  #Roster: Ricky Lin, Jalen Chen
+ # SoftDev
 import sqlite3
 import os
 from datetime import datetime
@@ -16,7 +20,7 @@ def add_user(username, password):
     DB_NAME = "Data/database.db"
     DB = sqlite3.connect(DB_NAME)
     DB_CURSOR = DB.cursor()
-    DB_CURSOR.execute("SELECT COUNT(*) FROM Users WHERE username = (?)", (username,))
+    DB_CURSOR.execute("SELECT COUNT(*) FROM Users WHERE username = (?)", (username))
     cursorfetch = DB_CURSOR.fetchone()[0]
     if cursorfetch == 1:
         DB.commit()
@@ -31,7 +35,7 @@ def get_user(username):
     DB_NAME = "Data/database.db"
     DB = sqlite3.connect(DB_NAME)
     DB_CURSOR = DB.cursor()
-    DB_CURSOR.execute("SELECT * FROM Users WHERE username = ?", (username,))
+    DB_CURSOR.execute("SELECT * FROM Users WHERE username = ?", (username))
     cursorfetch = DB_CURSOR.fetchone()
     return cursorfetch
 

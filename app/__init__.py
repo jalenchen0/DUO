@@ -1,3 +1,9 @@
+
+  #Duo's To Do List
+  #Roster: Ricky Lin, Jalen Chen
+ # SoftDev
+
+
 # Imports
 from flask import Flask, render_template, request, flash, url_for, redirect, session
 import sqlite3   #enable control of an sqlite database
@@ -19,7 +25,7 @@ def user_context(): # persistent info made avalible for all html templates
     return {
         "logged_in": ('username' in session),
         "current_user": session.get('username')
-
+}
 @app.route("/", methods=['GET', 'POST'])
 def homepage():
     if 'username' in session:
@@ -36,13 +42,18 @@ def login():
             return redirect(url_for('login'))
         db_user = db.get(user)
         if (db_user is None or not db.check_password(db_user)):
-            redirect(url_for('login'))
-        redirect(url_for('/'))
+            flash("Username or password is not correct!")
+            return redirect(url_for('login'))
+        flash(f"Login Successful! Welcome back, {user}.")
+        session['username'] = user
+        return redirect(url_for('/'))
     return render_template("login.html");
 
 @app.route("/logout", methods=['GET', 'POST'])
 def logout():
-    return render_template("logout.html");
+    session.clear()
+    flash("You have been logged out.")
+    return redirect(url_for('homepage'))
 @app.route("/create", methods=['GET', 'POST'])
 def create():
     return render_template("create.html");
@@ -55,9 +66,17 @@ def register():
         user = request.form['username'].strip()
         pswd = request.form['password'].strip()
         if(not user or not pswd):
+            flash("WARNING: One of the fields cannot be empty!")
+            return redirect(url_for('register'))
+        if db.add_user(user, pswd):
+            flash(f"Registration Successful! Welcome, {user}. Please log in.")
+            return redirect(url_for('login'))
+        else:
+            flash("Username already exists. Please choose another.")
+            return redirect(url_for('register'))
+        if(not user or not pswd):
             flash("WARNING: Username and Password cannot be empty!")
             return redirect(url_for('register'))
-        db.add_user(user,pswd)
         return redirect(url_for('login'))
     return render_template("register.html");
 
