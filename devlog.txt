@@ -22,3 +22,9 @@ JalenC -- 2026-1-14 11:35 PM
 - added nav bars
 - added temporary form for create
 - touched up login and register pages
+
+JalenC -- 2026-1-15 11:02 AM
+- worked on db.py
+- attempted to fix __init__.py errors
+- adjusted register.html
+- added .gitignore
