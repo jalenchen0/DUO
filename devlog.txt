@@ -17,3 +17,8 @@ RickyL -- 2026-1-13 7:00 AM
 JalenC -- 2026-1-13 11:00 AM
 - fixed team flag
 - added ui block for register.html
+
+JalenC -- 2026-1-14 11:35 PM
+- added nav bars
+- added temporary form for create
+- touched up login and register pages
