@@ -8,7 +8,7 @@
 from flask import Flask, render_template, request, flash, url_for, redirect, session
 import sqlite3   #enable control of an sqlite database
 import csv       #facilitate CSV I/O
-#import db
+import db
 import json
 from urllib.request import Request, urlopen
 import pprint
@@ -40,8 +40,8 @@ def login():
         if(not user or not pswd):
             flash("WARNING: Username and Password cannot be empty!")
             return redirect(url_for('login'))
-        db_user = db.get(user)
-        if (db_user is None or not db.check_password(db_user)):
+        db_user = db.get_user(user)
+        if (db_user is None or not db.check_password(db_user, pswd)):
             flash("Username or password is not correct!")
             return redirect(url_for('login'))
         flash(f"Login Successful! Welcome back, {user}.")

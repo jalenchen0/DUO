@@ -7,37 +7,35 @@ import os
 from datetime import datetime
 import json
 
-DB_NAME = "Data/database.db"
-try:
-    os.mkdir("Data/")
-except:
-    pass
-DB = sqlite3.connect(DB_NAME)
-DB_CURSOR = DB.cursor()
-DB_CURSOR.execute("CREATE TABLE IF NOT EXISTS Users(username TEXT PRIMARY KEY, password TEXT);")
+DB_FILE = "database.db"
+db = sqlite3.connect(DB_FILE, check_same_thread=False)
+c = db.cursor()
+c.execute("CREATE TABLE IF NOT EXISTS accounts (username TEXT PRIMARY KEY, password TEXT);")
 
 def add_user(username, password):
-    DB_NAME = "Data/database.db"
-    DB = sqlite3.connect(DB_NAME)
-    DB_CURSOR = DB.cursor()
-    DB_CURSOR.execute("SELECT COUNT(*) FROM Users WHERE username = (?)", (username))
-    cursorfetch = DB_CURSOR.fetchone()[0]
+    c = db.cursor()
+    c.execute("SELECT COUNT(*) FROM accounts WHERE username = ?", [username])
+    cursorfetch = c.fetchone()[0]
     if cursorfetch == 1:
-        DB.commit()
-        DB.close()
+        db.commit()
         return False
-    DB_CURSOR.execute("INSERT INTO Users VALUES(?, ?)", (username, password))
-    DB.commit()
-    DB.close()
+    c.execute("INSERT INTO accounts VALUES(?, ?)", (username, password))
+    c.close
+    db.commit()
     return True
 
 def get_user(username):
-    DB_NAME = "Data/database.db"
-    DB = sqlite3.connect(DB_NAME)
-    DB_CURSOR = DB.cursor()
-    DB_CURSOR.execute("SELECT * FROM Users WHERE username = ?", (username))
-    cursorfetch = DB_CURSOR.fetchone()
+    c = db.cursor()
+    c.execute("SELECT * FROM accounts WHERE username = ?", [username])
+    cursorfetch = c.fetchone()
     return cursorfetch
 
 def check_password(username, password):
     return password == get_user(username)[1]
+
+def create(title, description, due):
+    c = db.cursor()
+    date = datetime.date
+    c.execute(f"INSERT INTO {username} VALUES({title}, {description}, {date}, {due})")
+    c.close()
+    db.commit()
