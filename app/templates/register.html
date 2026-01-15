@@ -33,9 +33,9 @@ https://tailwindcss.com/plus/ui-blocks/application-ui/forms/sign-in-forms
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
     <form action="#" method="POST" class="space-y-6">
       <div>
-        <label for="email" class="block text-sm/6 font-medium text-gray-100">Email address</label>
+        <label class="block text-sm/6 font-medium text-gray-100">Username</label>
         <div class="mt-2">
-          <input id="email" type="email" name="email" required autocomplete="email" class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
+          <input id="username" type="text" name="username" required autocomplete="username" class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
         </div>
       </div>
 
@@ -52,6 +52,12 @@ https://tailwindcss.com/plus/ui-blocks/application-ui/forms/sign-in-forms
         <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Sign in</button>
       </div>
     </form>
+
+    <p class="mt-10 text-center text-sm/6 text-gray-400">
+      Already have an account?
+      <a href="/login" class="font-semibold text-indigo-400 hover:text-indigo-300">Log in here</a>
+    </p>
+
   </div>
 </div>
 
