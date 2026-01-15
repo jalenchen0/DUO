@@ -13,3 +13,7 @@ RickyL -- 2026-1-13 7:00 AM
 - Added to design doc
 - Made a working flask app
 - Added all html templates for flask app 
+
+JalenC -- 2026-1-13 11:00 AM
+- fixed team flag
+- added ui block for register.html
