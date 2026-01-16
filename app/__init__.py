@@ -1,3 +1,8 @@
+
+  #Duo's To Do List
+  #Roster: Ricky Lin, Jalen Chen
+ # SoftDev
+
 # Imports
 from flask import Flask, render_template, request, flash, url_for, redirect, session
 import sqlite3

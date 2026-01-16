@@ -108,7 +108,7 @@
     const sortSelect = document.getElementById('sortSelect');
     const taskList = document.getElementById('taskList');
 
-    // Sorting functionality
+
     if (sortSelect && taskList) {
       sortSelect.addEventListener('change', function() {
         const sortType = this.value;
@@ -137,12 +137,11 @@
         taskList.innerHTML = '';
         tasks.forEach(task => taskList.appendChild(task));
 
-        // Re-attach expand/collapse listeners
+
         attachExpandListeners();
       });
     }
 
-    // Expand/collapse functionality
     function attachExpandListeners() {
       document.querySelectorAll('.task-title').forEach(title => {
         title.addEventListener('click', function() {
@@ -156,7 +155,7 @@
       });
     }
 
-    // Initial attachment
+
     attachExpandListeners();
   </script>
 </body>
