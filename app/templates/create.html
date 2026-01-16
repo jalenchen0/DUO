@@ -43,9 +43,14 @@
           </div>
           <div class="hidden sm:ml-6 sm:block">
             <div class="flex space-x-4">
-              <a href="/" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Home</a>
-              <a href="/create" aria-current="page" class="rounded-md bg-gray-950/50 px-3 py-2 text-sm font-medium text-white">+ Create</a>
+              <a href="/" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white transition-transform tilt-3d">Home</a>
+              <a href="/create" aria-current="page" class="rounded-md bg-indigo-700 px-3 py-2 text-sm font-medium text-white transition-transform tilt-3d">+ Create</a>
             </div>
+          </div>
+          <div class="hidden sm:flex items-center ml-auto">
+            <form action="/logout" method="POST">
+              <button type="submit" class="rounded-md bg-red-600 px-3 py-2 text-sm font-medium text-white hover:bg-red-700 transition-transform tilt-3d">Logout</button>
+            </form>
           </div>
         </div>
       </div>
