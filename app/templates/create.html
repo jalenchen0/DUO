@@ -23,10 +23,23 @@
         <label class="block text-sm font-medium text-white">Title</label>
         <input type="text" name="title" class="block w-full rounded-md bg-white/5 px-3 py-2 text-white placeholder:text-gray-500 focus:outline-indigo-500" required>
       </div>
-
-      <div>
-        <label class="block text-sm font-medium text-white">Description</label>
-        <textarea name="description" rows="3" class="block w-full rounded-md bg-white/5 px-3 py-2 text-white placeholder:text-gray-500 focus:outline-indigo-500"></textarea>
+      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+        <div class="flex shrink-0 items-center">
+          <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" class="h-8 w-auto" />
+        </div>
+        <div class="hidden sm:ml-6 sm:block">
+          <div class="flex space-x-4">
+            <!-- Current: "bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
+            <a href="/" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Home</a>
+            <a href="/profile" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Profile</a>
+            <a href="/create" aria-current="page" class="rounded-md px-3 py-2 text-sm bg-indigo-700 font-medium text-white hover:bg-indigo-700">+ Create</a>
+          </div>
+        </div>
+        <div class="hidden sm:flex items-center ml-auto">
+          <form action="/logout" method="POST">
+            <button type="submit" class="rounded-md bg-red-600 px-3 py-2 text-sm font-medium text-white hover:bg-red-700">Logout</button>
+          </form>
+        </div>
       </div>
 
       <div>

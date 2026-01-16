@@ -1,11 +1,11 @@
-# db.py
+
 import sqlite3
 from datetime import datetime
 
 DB_FILE = "database.db"
 db = sqlite3.connect(DB_FILE, check_same_thread=False)
 
-# Initialize tables
+
 c = db.cursor()
 c.execute("""
     CREATE TABLE IF NOT EXISTS accounts (
