@@ -20,7 +20,7 @@ def add_user(username, password):
         db.commit()
         return False
     c.execute("INSERT INTO accounts VALUES(?, ?)", (username, password))
-    c.close
+    c.close()
     db.commit()
     return True
 
@@ -30,8 +30,8 @@ def get_user(username):
     cursorfetch = c.fetchone()
     return cursorfetch
 
-def check_password(username, password):
-    return password == get_user(username)[1]
+def check_password(db_user, password):
+    return password == db_user[1]
 
 def create(title, description, due):
     c = db.cursor()
