@@ -4,6 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
+<script src="../static/js/duo.js" defer></script>
 <body class="h-full text-white">
   {% with messages = get_flashed_messages() %}
     {% if messages %}
@@ -35,14 +36,14 @@
           </div>
           <div class="hidden sm:ml-6 sm:block">
             <div class="flex space-x-4">
-              <a href="/" aria-current="page" class="rounded-md bg-gray-950/50 px-3 py-2 text-sm font-medium text-white">Home</a>
-              <a href="/create" class="rounded-md px-3 py-2 text-sm bg-indigo-600 font-medium text-white hover:bg-indigo-700">+ Create</a>
+              <a href="/" aria-current="page" class="rounded-md bg-gray-950/50 px-3 py-2 text-sm font-medium text-white transition-transform tilt-3d">Home</a>
+              <a href="/create" class="rounded-md px-3 py-2 text-sm bg-indigo-600 font-medium text-white hover:bg-indigo-700 transition-transform tilt-3d">+ Create</a>
             </div>
           </div>
         </div>
         <div class="hidden sm:flex items-center ml-auto">
           <form action="/logout" method="POST">
-            <button type="submit" class="rounded-md bg-red-600 px-3 py-2 text-sm font-medium text-white hover:bg-red-700">Logout</button>
+            <button type="submit" class="rounded-md bg-red-600 px-3 py-2 text-sm font-medium text-white hover:bg-red-700 transition-transform tilt-3d">Logout</button>
           </form>
         </div>
       </div>
