@@ -36,3 +36,6 @@ RickyL -- 2026-1-16 7:00 AM
 - Added JS to buttons 
 - Added features like sort, date functionality, and compressing to do list details
 - Fixed flask app's connection to html 
+
+JalenC -- 2026-1-16 7:00 AM
+- added logout button
