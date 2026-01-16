@@ -23,8 +23,16 @@ JalenC -- 2026-1-14 11:35 PM
 - added temporary form for create
 - touched up login and register pages
 
+RickyL -- 2026-1-15 12:00 AM
+- Finished up flask functionality first draft and added functions to db. 
+
 JalenC -- 2026-1-15 11:02 AM
 - worked on db.py
 - attempted to fix __init__.py errors
 - adjusted register.html
 - added .gitignore
+
+RickyL -- 2026-1-16 7:00 AM
+- Added JS to buttons 
+- Added features like sort, date functionality, and compressing to do list details
+- Fixed flask app's connection to html 
