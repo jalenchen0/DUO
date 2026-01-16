@@ -1,18 +1,17 @@
-
 import sqlite3
 from datetime import datetime
 
 DB_FILE = "database.db"
 db = sqlite3.connect(DB_FILE, check_same_thread=False)
-
-
 c = db.cursor()
+
 c.execute("""
     CREATE TABLE IF NOT EXISTS accounts (
         username TEXT PRIMARY KEY,
         password TEXT
     )
 """)
+
 c.execute("""
     CREATE TABLE IF NOT EXISTS tasks (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -22,9 +21,9 @@ c.execute("""
         due TEXT
     )
 """)
+
 db.commit()
 c.close()
-
 
 def add_user(username, password):
     c = db.cursor()
@@ -63,3 +62,11 @@ def get_tasks_for_user(username):
     tasks = c.fetchall()
     c.close()
     return tasks
+
+def delete_task(task_id, username):
+    c = db.cursor()
+    c.execute("DELETE FROM tasks WHERE id = ? AND username = ?", (task_id, username))
+    db.commit()
+    deleted = c.rowcount > 0
+    c.close()
+    return deleted

@@ -1,40 +1,32 @@
-
-  #Duo's To Do List
-  #Roster: Ricky Lin, Jalen Chen
- # SoftDev
-
-
 # Imports
 from flask import Flask, render_template, request, flash, url_for, redirect, session
-import sqlite3   #enable control of an sqlite database
-import csv       #facilitate CSV I/O
+import sqlite3
+import csv
 import db
 import json
 from urllib.request import Request, urlopen
 import pprint
 import os
 import re
-# Initialize databases
 
+# Initialize databases
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
-
 @app.context_processor
-def user_context(): # persistent info made avalible for all html templates
+def user_context():
     return {
         "logged_in": ('username' in session),
         "current_user": session.get('username')
-}
+    }
+
 @app.route("/", methods=['GET', 'POST'])
 def homepage():
     if 'username' not in session:
         flash("You must be logged in to view your tasks.")
         return redirect(url_for('login'))
-
     tasks = db.get_tasks_for_user(session['username'])
     return render_template("homepage.html", tasks=tasks)
-
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -64,21 +56,31 @@ def create():
     if 'username' not in session:
         flash("You must be logged in to create a task.")
         return redirect(url_for('login'))
-
     if request.method == 'POST':
         title = request.form.get('title').strip()
         description = request.form.get('description').strip()
         due = request.form.get('due').strip()
-
         if not title:
             flash("Title cannot be empty!")
             return redirect(url_for('create'))
-
         db.add_task(session['username'], title, description, due)
         flash("Task created successfully!")
         return redirect(url_for('homepage'))
-
     return render_template("create.html")
+
+@app.route("/delete/<int:task_id>", methods=['POST'])
+def delete_task(task_id):
+    if 'username' not in session:
+        flash("You must be logged in to delete tasks.")
+        return redirect(url_for('login'))
+
+    if db.delete_task(task_id, session['username']):
+        flash("Task deleted successfully!")
+    else:
+        flash("Task not found or you don't have permission to delete it.")
+
+    return redirect(url_for('homepage'))
+
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     if (request.method == 'POST'):
