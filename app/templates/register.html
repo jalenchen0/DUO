@@ -23,6 +23,15 @@ https://tailwindcss.com/plus/ui-blocks/application-ui/forms/sign-in-forms
   <body class="h-full">
   ```
 -->
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="mb-4 text-center">
+      {% for msg in messages %}
+        <p class="text-red-400 text-sm">{{ msg }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
     <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" class="mx-auto h-10 w-auto" />
