@@ -46,8 +46,8 @@ def login():
             return redirect(url_for('login'))
         flash(f"Login Successful! Welcome back, {user}.")
         session['username'] = user
-        return redirect(url_for('/'))
-    return render_template("login.html");
+        return redirect(url_for('homepage'))
+    return render_template("login.html")
 
 @app.route("/logout", methods=['GET', 'POST'])
 def logout():
@@ -74,11 +74,8 @@ def register():
         else:
             flash("Username already exists. Please choose another.")
             return redirect(url_for('register'))
-        if(not user or not pswd):
-            flash("WARNING: Username and Password cannot be empty!")
-            return redirect(url_for('register'))
         return redirect(url_for('login'))
-    return render_template("register.html");
+    return render_template("register.html")
 
 if __name__ == "__main__":
     app.debug = True
