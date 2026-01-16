@@ -79,14 +79,6 @@ def create():
         return redirect(url_for('homepage'))
 
     return render_template("create.html")
-@app.route("/profile", methods=['GET', 'POST'])
-def profile():
-    if 'username' not in session:
-       flash("You must be logged in to create a task.")
-       return redirect(url_for('login'))
-
-    return render_template("profile.html");
-
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     if (request.method == 'POST'):

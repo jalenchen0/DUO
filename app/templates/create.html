@@ -38,7 +38,6 @@
           <div class="hidden sm:ml-6 sm:block">
             <div class="flex space-x-4">
               <a href="/" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Home</a>
-              <a href="/profile" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Profile</a>
               <a href="/create" aria-current="page" class="rounded-md bg-gray-950/50 px-3 py-2 text-sm font-medium text-white">+ Create</a>
             </div>
           </div>
@@ -48,7 +47,6 @@
     <el-disclosure id="mobile-menu" hidden class="block sm:hidden">
       <div class="space-y-1 px-2 pt-2 pb-3">
         <a href="/" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Home</a>
-        <a href="/profile" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Profile</a>
         <a href="/create" aria-current="page" class="block rounded-md px-3 py-2 text-base font-medium bg-gray-950/50 text-white">+ Create</a>
       </div>
     </el-disclosure>
@@ -69,7 +67,7 @@
 
       <div>
         <label class="block text-sm font-medium text-white">(Optional) Due Date</label>
-        <input type="text" name="due" class="block w-full rounded-md bg-white/5 px-3 py-2 text-white placeholder:text-gray-500 focus:outline-indigo-500">
+        <input type="date" name="due" class="block w-full rounded-md bg-white/5 px-3 py-2 text-white placeholder:text-gray-500 focus:outline-indigo-500 [color-scheme:dark]">
       </div>
 
       <button type="submit" class="w-full rounded-md bg-indigo-500 px-3 py-2 text-white font-semibold hover:bg-indigo-400">+ Create</button>
