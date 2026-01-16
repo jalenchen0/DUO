@@ -1,18 +1,9 @@
-<!--
-  Duo's To Do List
-  Roster: Ricky Lin, Jalen Chen
-  SoftDev
- -->
 <!DOCTYPE html>
-
-<!--
-https://tailwindcss.com/plus/ui-blocks/application-ui/navigation/navbars
-https://tailwindcss.com/plus/ui-blocks/application-ui/forms/form-layouts
--->
-
 <html class="h-full bg-gray-900">
-<head>    <meta name="viewport" content="width=device-width, initial-scale=1.0" />    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>  </head>
-
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
 <body class="h-full">
   {% with messages = get_flashed_messages() %}
     {% if messages %}
@@ -23,82 +14,28 @@ https://tailwindcss.com/plus/ui-blocks/application-ui/forms/form-layouts
       </div>
     {% endif %}
   {% endwith %}
-<nav class="relative bg-gray-800/50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10">
-  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-    <div class="relative flex h-16 items-center justify-between">
-      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-        <!-- Mobile menu button-->
-        <button type="button" command="--toggle" commandfor="mobile-menu" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500">
-          <span class="absolute -inset-0.5"></span>
-          <span class="sr-only">Open main menu</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 in-aria-expanded:hidden">
-            <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 not-in-aria-expanded:hidden">
-            <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </button>
+
+  <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <h2 class="mt-10 text-center text-2xl font-bold tracking-tight text-white">Create a Task</h2>
+
+    <form method="POST" class="mt-10 sm:mx-auto sm:w-full sm:max-w-md space-y-6">
+      <div>
+        <label class="block text-sm font-medium text-white">Title</label>
+        <input type="text" name="title" class="block w-full rounded-md bg-white/5 px-3 py-2 text-white placeholder:text-gray-500 focus:outline-indigo-500" required>
       </div>
-      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-        <div class="flex shrink-0 items-center">
-          <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" class="h-8 w-auto" />
-        </div>
-        <div class="hidden sm:ml-6 sm:block">
-          <div class="flex space-x-4">
-            <!-- Current: "bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
-            <a href="/" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Home</a>
-            <a href="/profile" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Profile</a>
-            <a href="/create" aria-current="page" class="rounded-md px-3 py-2 text-sm bg-indigo-700 font-medium text-white hover:bg-indigo-700">+ Create</a>
-          </div>
-        </div>
+
+      <div>
+        <label class="block text-sm font-medium text-white">Description</label>
+        <textarea name="description" rows="3" class="block w-full rounded-md bg-white/5 px-3 py-2 text-white placeholder:text-gray-500 focus:outline-indigo-500"></textarea>
       </div>
-    </div>
+
+      <div>
+        <label class="block text-sm font-medium text-white">(Optional) Due Date</label>
+        <input type="text" name="due" class="block w-full rounded-md bg-white/5 px-3 py-2 text-white placeholder:text-gray-500 focus:outline-indigo-500">
+      </div>
+
+      <button type="submit" class="w-full rounded-md bg-indigo-500 px-3 py-2 text-white font-semibold hover:bg-indigo-400">+ Create</button>
+    </form>
   </div>
-
-  <el-disclosure id="mobile-menu" hidden class="block sm:hidden">
-    <div class="space-y-1 px-2 pt-2 pb-3">
-      <!-- Current: "bg-gray-950/50 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
-      <a href="/" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Home</a>
-      <a href="/profile" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Profile</a>
-      <a href="/create" aria-current="page" class="block rounded-md px-3 py-2 text-base font-medium bg-gray-950/50 text-white">+ Create</a>
-    </div>
-  </el-disclosure>
-</nav>
-
-<form>
-  <div class="space-y-12">
-    <div class="border-b border-white/10 pb-12">
-      <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-        <div class="sm:col-span-4">
-          <label class="block text-sm/6 font-medium text-white">Title</label>
-          <div class="mt-2">
-            <div class="flex items-center rounded-md bg-white/5 pl-3 outline-1 -outline-offset-1 outline-white/10 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-500">
-              <input type="text" class="block min-w-0 grow bg-transparent py-1.5 pr-3 pl-1 text-base text-white placeholder:text-gray-500 focus:outline-none sm:text-sm/6" />
-            </div>
-          </div>
-        </div>
-
-        <div class="col-span-full">
-          <label for="about" class="block text-sm/6 font-medium text-white">Description</label>
-          <div class="mt-2">
-            <textarea id="about" name="about" rows="3" class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"></textarea>
-          </div>
-        </div>
-
-        <div class="sm:col-span-4">
-          <label class="block text-sm/6 font-medium text-white">(Optional) Due Date</label>
-          <div class="mt-2">
-            <div class="flex items-center rounded-md bg-white/5 pl-3 outline-1 -outline-offset-1 outline-white/10 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-500">
-              <input type="text" class="block min-w-0 grow bg-transparent py-1.5 pr-3 pl-1 text-base text-white placeholder:text-gray-500 focus:outline-none sm:text-sm/6" />
-            </div>
-          </div>
-        </div>
-
-  <div class="mt-6 flex items-center justify-end gap-x-6">
-    <button type="button" class="text-sm/6 font-semibold text-white">Cancel</button>
-    <button type="submit" class="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">+ Create</button>
-  </div>
-</form>
-
 </body>
 </html>

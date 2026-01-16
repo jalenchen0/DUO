@@ -1,41 +1,65 @@
-
-  #Duo's To Do List
-  #Roster: Ricky Lin, Jalen Chen
- # SoftDev
+# db.py
 import sqlite3
-import os
 from datetime import datetime
-import json
 
 DB_FILE = "database.db"
 db = sqlite3.connect(DB_FILE, check_same_thread=False)
+
+# Initialize tables
 c = db.cursor()
-c.execute("CREATE TABLE IF NOT EXISTS accounts (username TEXT PRIMARY KEY, password TEXT);")
+c.execute("""
+    CREATE TABLE IF NOT EXISTS accounts (
+        username TEXT PRIMARY KEY,
+        password TEXT
+    )
+""")
+c.execute("""
+    CREATE TABLE IF NOT EXISTS tasks (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT,
+        title TEXT,
+        description TEXT,
+        due TEXT
+    )
+""")
+db.commit()
+c.close()
+
 
 def add_user(username, password):
     c = db.cursor()
-    c.execute("SELECT COUNT(*) FROM accounts WHERE username = ?", [username])
-    cursorfetch = c.fetchone()[0]
-    if cursorfetch == 1:
-        db.commit()
+    c.execute("SELECT COUNT(*) FROM accounts WHERE username = ?", (username,))
+    exists = c.fetchone()[0]
+    if exists:
+        c.close()
         return False
-    c.execute("INSERT INTO accounts VALUES(?, ?)", (username, password))
-    c.close()
+    c.execute("INSERT INTO accounts (username, password) VALUES (?, ?)", (username, password))
     db.commit()
+    c.close()
     return True
 
 def get_user(username):
     c = db.cursor()
-    c.execute("SELECT * FROM accounts WHERE username = ?", [username])
-    cursorfetch = c.fetchone()
-    return cursorfetch
+    c.execute("SELECT * FROM accounts WHERE username = ?", (username,))
+    user = c.fetchone()
+    c.close()
+    return user
 
 def check_password(db_user, password):
-    return password == db_user[1]
+    return db_user and db_user[1] == password
 
-def create(title, description, due):
+def add_task(username, title, description, due):
     c = db.cursor()
-    date = datetime.date
-    c.execute(f"INSERT INTO {username} VALUES({title}, {description}, {date}, {due})")
-    c.close()
+    c.execute(
+        "INSERT INTO tasks (username, title, description, due) VALUES (?, ?, ?, ?)",
+        (username, title, description, due)
+    )
     db.commit()
+    c.close()
+
+def get_tasks_for_user(username):
+    c = db.cursor()
+    c.execute("SELECT id, title, description, due FROM tasks WHERE username = ?", (username,))
+    tasks = c.fetchall()
+    c.close()
+    return tasks

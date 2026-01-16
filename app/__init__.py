@@ -28,9 +28,13 @@ def user_context(): # persistent info made avalible for all html templates
 }
 @app.route("/", methods=['GET', 'POST'])
 def homepage():
-    if 'username' in session:
-        return render_template("homepage.html")
-    return render_template("login.html")
+    if 'username' not in session:
+        flash("You must be logged in to view your tasks.")
+        return redirect(url_for('login'))
+
+    tasks = db.get_tasks_for_user(session['username'])
+    return render_template("homepage.html", tasks=tasks)
+
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -54,12 +58,35 @@ def logout():
     session.clear()
     flash("You have been logged out.")
     return redirect(url_for('homepage'))
+
 @app.route("/create", methods=['GET', 'POST'])
 def create():
-    return render_template("create.html");
+    if 'username' not in session:
+        flash("You must be logged in to create a task.")
+        return redirect(url_for('login'))
+
+    if request.method == 'POST':
+        title = request.form.get('title').strip()
+        description = request.form.get('description').strip()
+        due = request.form.get('due').strip()
+
+        if not title:
+            flash("Title cannot be empty!")
+            return redirect(url_for('create'))
+
+        db.add_task(session['username'], title, description, due)
+        flash("Task created successfully!")
+        return redirect(url_for('homepage'))
+
+    return render_template("create.html")
 @app.route("/profile", methods=['GET', 'POST'])
 def profile():
+    if 'username' not in session:
+       flash("You must be logged in to create a task.")
+       return redirect(url_for('login'))
+
     return render_template("profile.html");
+
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     if (request.method == 'POST'):
